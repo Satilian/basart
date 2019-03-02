@@ -1,0 +1,37 @@
+import React from 'react'
+import { withStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField'
+
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexWrap: 'wrap',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    marginRight: theme.spacing.unit,
+    width: 200,
+  },
+})
+
+const DateField = props => {
+	const { classes, value, upProp } = props;
+
+  return (
+    <form className={classes.container} noValidate>
+      <TextField
+        id="date"
+        label="Дата проведения"
+        type="date"
+        defaultValue={value}
+        className={classes.textField}
+        onChange={({target}) => upProp(target.value)}
+        InputLabelProps={{
+          shrink: true,
+        }}
+      />
+    </form>
+  )
+}
+
+export default withStyles(styles)(DateField)

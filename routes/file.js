@@ -1,7 +1,7 @@
 const router = require('express').Router()
 const fs = require('fs')
 const fsPromises = require('fs').promises
-//const sharp = require('sharp')
+const sharp = require('sharp')
 const imgPath = '/home/www/bayart/public/img'
 
 router.delete('/imgdir', (req, res) => {
