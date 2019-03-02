@@ -1,0 +1,25 @@
+{
+  "name": "basart",
+  "version": "1.0.0",
+  "description": "dasart.ru",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Satilian/basart.git"
+  },
+  "keywords": [
+    "basart"
+  ],
+  "author": "Satilian",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Satilian/basart/issues"
+  },
+  "homepage": "https://github.com/Satilian/basart#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
