@@ -1,0 +1,19 @@
+block mainbottom
+	div(class="mainbottom")
+		div(class="container")
+			div(class="row")
+				div(class="col-12")
+					div(class="bottom-title")
+						h5 НОВЫЕ ПОСТУПЛЕНИЯ
+						div(class="border-bottom" style="margin-bottom:20px; border-color:#dd7d4b !important; width:80px;")
+					div(class="bottom-new")
+						div(class="row new-items")
+							each item in new_lots
+								div(class="new-item")
+									a(href=item.link)
+										div(class="figure")
+											img(src="/img/module/3/thumb_" + item.image alt="")
+											div
+										div(class="caption")
+											div #{item.avtor}
+											h3 #{item.title}

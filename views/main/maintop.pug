@@ -1,0 +1,16 @@
+block maintop
+	div(class="maintop")
+		div(class="container")
+			div(class="row")
+				div(class="col")
+					h5 ТОП ЛОТЫ
+					div(class="border-bottom" style="margin-bottom:20px; border-color:#dd7d4b !important; width:80px;")
+			div(class="row")
+				each item in top_lots
+					div(class="top-item col-sm-4")
+						a(href=item.link)
+							div(class="figure")
+								img(src="/img/module/2/thumb_" + item.image alt="")
+							div(class="caption")
+								div #{item.avtor}
+								h3 #{item.title}

@@ -1,0 +1,48 @@
+extends ../layout
+
+block content
+	.parallax
+		h1= title
+
+	.lightbox-wrapper
+	.lightbox-outer(data-close='1')
+		.lightbox
+			.img-container
+				img(class='lightbox-img' src=`/img/lots/${id}/1200_${lot.image[0]}`)
+			.data-container
+				span(class='img-path') #{`/img/lots/${id}/`}
+				span(class='img-names') #{lot.image}
+				span(class="close-lightbox")
+					i(class="fas fa-times" data-close='1')
+				if(lot.image.length > 1)
+					span(class="lightbox-nav") 
+						i(class="fas fa-chevron-left" data-rotate='left')
+						i(class="fas fa-chevron-right" data-rotate='right')
+
+	.container
+		.row
+			.lot-inner
+				.gallery-inner
+					if(lot.image.length)
+						.big-thumb: img(src=`/img/lots/${id}/300_${lot.image[0]}` width='400' data-big-thumb='1' class='big-thumb-img')
+					if(lot.image.length > 1)
+						.thumb-list
+							- var active = 'thumb-img-active'
+							each img, i in lot.image
+								img(class=`thumb-img ${i==0?active:''}` src=`/img/lots/${id}/300_${img}` width='80' data-thumb=i)
+
+				.charakters-inner
+					ul
+						if lot.avtor
+							li #[b Автор: ] #{lot.avtor}
+						if lot.year
+							li #[b Год: ] #{lot.year}
+						if lot.technika
+							li #[b Техника: ] #{lot.technika}
+						if lot.size
+							li #[b Размер: ] #{lot.size}
+						if lot.price
+							li #[b Цена: ] #{lot.price}
+				.description-inner 
+					h5 ОПИСАНИЕ
+					p= description

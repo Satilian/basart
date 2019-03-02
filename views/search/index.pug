@@ -1,0 +1,35 @@
+extends ../layout
+
+block content
+	.parallax
+		h1= title
+	.aykcion
+		.container
+			.row
+				if items && items.length
+					div(class="col col-lg-1 col-xl-2")
+					div(class="col-12 col-lg-10 col-xl-8")
+						table(class="table")
+							thead
+								tr
+									th(scope="col") 
+									th(scope="col") ОПИСАНИЕ
+									th(scope="col") СТОИМОСТЬ
+							tbody
+								each row in items
+									tr
+										td: a(href="/" + row.uri): img(src=`/img/lots/${row.id}/300_${row.image[0]}`)
+										td
+											if row.title
+												p: a(href="/" + row.uri)= row.title
+											if row.avtor
+												p #[b Автор: ] #{row.avtor}
+											if row.year
+												p #[b Год: ] #{row.year}
+											if row.technika
+												p #[b Техника: ] #{row.technika}
+											if row.size
+												p #[b Размер: ] #{row.size}
+										td
+											if row.price
+												p= row.price

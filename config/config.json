@@ -1,0 +1,32 @@
+{
+  "development": {
+    "username": "bayart",
+    "password": "1Zad2bulki",
+    "database": "bayart",
+    "dialect": "mysql",
+    "operatorsAliases": false,
+    "pool": {
+      "max": 5,
+      "min": 0,
+      "acquire": 30000,
+      "idle": 10000
+    },
+    "define": {
+      "timestamps": false
+    }
+  },
+  "test": {
+    "username": "bayart",
+    "password": "1Zad2bulki",
+    "database": "bayart",
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "bayart",
+    "password": "1Zad2bulki",
+    "database": "bayart",
+    "host": "localhost",
+    "dialect": "mysql"
+  }
+}

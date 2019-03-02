@@ -1,0 +1,11 @@
+block about
+	div(class="about-category")
+		div(class="container")
+			div(class="row")
+				each row in footer_mod
+					div(class="col-12 col-sm-4 about-item")
+						a(href=row.link)
+							div(class="about-img")
+								img(src="/img/module/4/thumb_" + row.image)
+								div
+								h3 #{row.title}

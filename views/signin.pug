@@ -1,0 +1,57 @@
+extends ./layout
+
+block content
+	.container
+		.row
+			.col-4
+			.col
+				.sign-form
+					ul(class="nav nav-tabs"  role="tablist" style="margin-bottom: 15px;")
+						li(role="presentation" class="nav-item active")
+							a(class="nav-link active" href="#signin" aria-controls="signin" role="tab" data-toggle="tab") Вход
+						li(role="presentation" class="nav-item")
+							a(class="nav-link" href="#signup" aria-controls="signup" role="tab" data-toggle="tab") Регистрация
+
+					div(class="tab-content")
+						div(role="tabpanel" class="tab-pane active" id="signin")
+							form(name="signin" method="POST" action="/signin")
+								.form-group
+									.input-group
+										.input-group-prepend
+											.input-group-text E - mail
+										input(class="form-control" name="email" type="email" placeholder="Введите Email")
+								.form-group
+									.input-group
+										.input-group-prepend
+											.input-group-text Пароль
+										input(class="form-control" name="pass" type="password" placeholder="Введите пароль")
+								.form-group
+									.form-check
+										input(type="checkbox" class="form-check-input" id="exampleCheck1")
+										label(class="form-check-label" for="exampleCheck1") Запомнить меня
+								.form-group
+									button(type="submit" class="btn btn-lg btn-primary btn-block") Вход
+
+						div(role="tabpanel" class="tab-pane" id="signup")
+							form(name="signup" method="POST" action="/signup")
+								.form-group
+									.input-group
+										.input-group-prepend
+											.input-group-text E - mail
+										input(class="form-control" name="email" type="email" placeholder="Введите Email")
+								.form-group
+									.input-group
+										.input-group-prepend
+											.input-group-text Пароль
+										input(class="form-control" name="pass" type="password" 
+											placeholder="Введите пароль" 
+											pattern='[A-Za-z-0-9]{6,15}'
+											title='Пароль должен содержать от 6 до 15 латинских букв и цифр')
+								.form-group
+									.input-group
+										.input-group-prepend
+											.input-group-text Пароль
+										input(class="form-control" name="pass" type="password" placeholder="Пароль ещё раз")
+								.form-group
+									button(type="submit" class="btn btn-lg btn-primary btn-block") Регистрация
+			.col-4

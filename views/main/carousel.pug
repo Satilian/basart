@@ -1,0 +1,20 @@
+block carousel
+	div(id="carouselExampleIndicators" class="carousel slide" data-ride="carousel")
+		ol(class="carousel-indicators")
+			li(data-target="#carouselExampleIndicators" data-slide-to="0" class="active")
+			li(data-target="#carouselExampleIndicators" data-slide-to="1")
+			li(data-target="#carouselExampleIndicators" data-slide-to="2")
+		div(class="carousel-inner")
+			each item, i in carousel
+				div(class=i?"carousel-item":"carousel-item active")
+					img(src="/img/module/1/thumb_" + item.image alt="")
+					div(class="carousel-caption")
+						h5 #{item.title}
+						p #{item.text}
+						a(href=item.link) ПОДРОБНЕЕ
+		a(class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev")
+			span(class="carousel-control-prev-icon" aria-hidden="true")
+			span(class="sr-only") Previous
+		a(class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next")
+			span(class="carousel-control-next-icon" aria-hidden="true")
+			span(class="sr-only") Next

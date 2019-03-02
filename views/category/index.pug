@@ -1,0 +1,51 @@
+extends ../layout
+
+block content
+	.parallax
+		h1= "Частные продажи"
+	.aykcion
+		div(class="d-md-none side-list-batton")
+			i(class="fa fa-bars" aria-hidden="true")
+			|  МЕНЮ
+		.container
+			.row
+				div(class="col col-md-4")
+					ul.list-group(class="side-list")
+						each row in menu
+							-var color = row.id==parent||row.id==id?'color:black;':''
+							li.list-group-item: a(style=color href='/' + row.uri) #{row.title}
+							if row.child
+								ul.list-group
+									each child in row.child
+										-var color = child.id==id?'color:black;':''
+										li.list-group-item: a(style='padding-left:20px;' + color href='/' + child.uri) #{child.title}
+
+				div(class="col-12 col-md-8")
+					h3= title
+					if items.length
+						table(class="table")
+							thead
+								tr
+									th(scope="col") ЛОТ
+									th(scope="col") 
+									th(scope="col") ОПИСАНИЕ
+									th(scope="col") СТОИМОСТЬ
+							tbody
+								each row in items
+									tr
+										td: b № #{row.lot.lot}
+										td: a(href="/" + row.uri): img(src=`/img/lots/${row.lot.id}/300_${row.lot.image[0]}`)
+										td
+											if row.title
+												p: a(href="/" + row.uri)= row.title
+											if row.lot.avtor
+												p #[b Автор: ] #{row.lot.avtor}
+											if row.lot.year
+												p #[b Год: ] #{row.lot.year}
+											if row.lot.technika
+												p #[b Техника: ] #{row.lot.technika}
+											if row.lot.size
+												p #[b Размер: ] #{row.lot.size}
+										td
+											if row.lot.price
+												p= row.lot.price
