@@ -2,8 +2,7 @@ const express = require('express')
 const app = express()
 const compression = require('compression')
 const cookieParser = require('cookie-parser')
-const fileUpload = require('express-fileupload')
-var user = require('./user')
+const user = require('./user')
 
 const fs = require('fs')
 const https = require('https')
@@ -11,11 +10,8 @@ const options = {
   cert: fs.readFileSync('./sslcert/fullchain.pem'),
   key: fs.readFileSync('./sslcert/privkey.pem')
 }
+https.createServer(options, app).listen(8008)
 
-https.createServer(options, app).listen(8008, () =>
-  console.log(`Listening on port 8008!`))
-
-app.use(fileUpload())
 app.use(compression())
 app.use(cookieParser())
 app.use(express.json())

@@ -2,7 +2,10 @@ const router = require('express').Router()
 const fs = require('fs')
 const fsPromises = require('fs').promises
 const sharp = require('sharp')
-const imgPath = '/home/www/bayart/public/img'
+const imgPath = '/home/max/basart/public/img'
+const multer = require('multer')
+const storage = multer.memoryStorage()
+const upload = multer({ storage })
 
 router.delete('/imgdir', (req, res) => {
 	if(req.user && req.user.status == 2) {
@@ -18,22 +21,21 @@ router.delete('/imgdir', (req, res) => {
 	} else res.end()
 }) 
 
-router.post('/lot', (req, res) => {
+router.post('/lot', upload.single('image'), (req, res) => {
 	if(req.user && req.user.status == 2) {
-
-		if (!req.files) return res.status(400).send('No files were uploaded.')
-		var image = sharp(req.files.image.data)
-		var name = req.files.image.name
+		if (!req.file) res.status(400).send('No files were uploaded.')
+    var image = sharp(req.file, { failOnError: false })
+		var name = req.file.originalname
 		var path = `${imgPath}/lots/${req.body.id}`
-		if(!fs.existsSync(path)) fs.mkdirSync(path)
+    if(!fs.existsSync(path)) fs.mkdirSync(path)
 
 		fs.access(`${path}/${name}`, fs.constants.F_OK, err => { //Проверяет есть ли фаил 
 			if(!err) res.status(208).end()
 			else {
 				image.toFile(`${path}/${name}`)
-				image.resize(1200, 1200).max()
+				image.resize(1200, 1200, { fit: "inside" })
 		  	.toFile(`${path}/1200_${name}`)
-		  	image.resize(300, 300).max()
+		  	image.resize(300, 300, { fit: "inside" })
 	  		.toFile(`${path}/300_${name}`)
 	  		.then(info => res.send('File uploaded!'))
 		  	.catch(err => res.status(500).send(err))
@@ -74,7 +76,7 @@ router.post('/module', (req, res) => {
 		  		switch (req.body.id) {
 		  			case '1': image.resize(1200, 300)
 		  				break
-		  			case '3': image.resize(300, 300).max()
+		  			case '3': image.resize(300, 300, { fit: "inside" })
 		  				break
 		  			default: image.resize(300, 300)
 		  		}
